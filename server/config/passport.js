@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const User = require('../models/User-model')
 
 //serialize user to session and store in cooie
 passport.serializeUser((user, done) => {
@@ -13,9 +14,12 @@ passport.deserializeUser((id, done) => {
     })
 });
 
-passport.use(new LocalStrategy(
-    async function (username, password, done) {
-        const user = await User.findOne({ username: username });
+passport.use(new LocalStrategy({
+    usernameField: 'email',   
+    passwordField: 'password'
+  },
+    async function (email, password, done) {
+        const user = await User.findOne({ email: email });
 
         if (user) {
             const result = await user.validatePassword(password);

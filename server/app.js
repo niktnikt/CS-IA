@@ -4,10 +4,12 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const cookieSession = require('cookie-session');
 const keys = require('./config/keys');
-const passport = require('passport')
+const passport = require('passport');
+const passportSetup = require('./config/passport.js');
 
 //routes
 const registerRoutes = require('./routes/register-routes');
+const loginRoutes = require('./routes/login-routes');
 
 mongoose.connect('mongodb://localhost:27017/cs-ia', {useNewUrlParser: true});
 
@@ -30,11 +32,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //router
-app.use('/api/register', registerRoutes)
+app.use('/api/register', registerRoutes);
+app.use('/api/login', loginRoutes)
 
 app.get('/api', (req, res) => {
-    console.log('req at /')
-    console.log(req.user)
+    //send user to front-end redux
+    user = req.user || false //ir req.user is undefined send that user is false to front-end
+    return res.json({
+        user: user
+    })
 })
 
 app.listen(5000, () => {
