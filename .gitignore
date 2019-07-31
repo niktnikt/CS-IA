@@ -12,6 +12,8 @@
 #keys
 /server/config/keys.js
 
+/vscode
+
 # production
 /build
 

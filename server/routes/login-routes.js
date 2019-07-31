@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
+const User = require('../models/User-model');
 
 router.post('/', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
@@ -9,10 +10,11 @@ router.post('/', function(req, res, next) {
                     message: info.message
                 })
         }
-        req.logIn(user, function(err) {
+        req.logIn(user, async function(err) {
             if (err) { return next(err); }
+            const user = await User.findById(req.user._id).populate('events')
             return res.json({
-                    user: req.user
+                    user: user
                 })
         });
     })(req, res, next);

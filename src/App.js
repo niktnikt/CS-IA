@@ -16,7 +16,9 @@ class App extends Component {
     //fetch user
     axios.get('/api').then((res) => {
       const user = res.data.user;
-      this.props.fetchUser(user)
+      const {events} = res.data;
+      this.props.fetchUser(user);
+      this.props.fetchEvents(events)
     })
   }
 
@@ -39,7 +41,8 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUser: (user) => { dispatch({ type: 'GET_USER', user: user }) }
+    fetchUser: (user) => { dispatch({ type: 'GET_USER', user: user }) },
+    fetchEvents: (events) => {dispatch({type: 'FETCH_EVENTS', events: events})}
   }
 }
 

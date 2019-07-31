@@ -1,0 +1,9 @@
+/* get rid of blue background on active tile */
+#book .react-calendar__tile--active{
+    background: auto !important;
+    color: unset !important;
+}
+
+#book .react-calendar{
+    width: 100%;
+}

@@ -1,0 +1,11 @@
+#home{
+    height: 94.3vh;
+    text-align: center;
+    overflow: auto;
+}
+#home-book-btn{
+    display: inline-block;
+}
+#home div{
+    margin-top: 300px;
+}

@@ -9,7 +9,7 @@ passport.serializeUser((user, done) => {
 
 //deserialize user form session
 passport.deserializeUser((id, done) => {
-    User.findById(id).then((user) => {
+    User.findById(id).populate('events').then((user) => {
         done(null, user)
     })
 });

@@ -1,0 +1,28 @@
+#admin-create-dialog-trash{
+    position: absolute;
+    top: 24px;
+    left: 90%;
+    color: red;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.5s color;
+    padding: 0;
+}
+#admin-create-dialog-trash:hover{
+    color: orange;
+}
+.react-calendar__tile--active{
+    color: none !important;
+}
+.admin-calendar-div{
+    display: flex;
+    justify-content: center;
+    
+}
+.admin-users-table{
+    width: 50%;
+}
+.admin-calendar-div .react-calendar{
+    width: 50%;
+}
